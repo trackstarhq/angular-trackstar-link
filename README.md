@@ -1,27 +1,63 @@
-# AngularTrackstarLink
+# angular-trackstar-link
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+### This package provides:
 
-## Development server
+An [Angular](https://angular.io/) button component that launches the [Trackstar](https://www.trackstarhq.com/) connect modal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Installing:
 
-## Code scaffolding
+_npm_:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install @trackstar/angular-trackstar-link
+```
 
-## Build
+_yarn_:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+yarn add @trackstar/angular-trackstar-link
+```
 
-## Running unit tests
+### Usage
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The `trackstar-link` modal can be triggered using the `trackstar-connect-button` component.
 
-## Running end-to-end tests
+```html
+<trackstar-connect-button
+  [config]="myConfig"
+  [buttonText]="Connect your WMS"
+></trackstar-connect-button>
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```jsx
+export class AppComponent {
+  someCustomerId = '12345';
+  myConfig = {
+    onSuccess: async (authCode: string) => {
+      await fetch('https://my-company/store-token', {
+        method: 'POST',
+        body: JSON.stringify({
+          customer_id: this.someCustomerId,
+          authCode: authCode
+        }),
+      });
+    },
+    onClose: () => {
+      console.log('closed');
+    },
+    onLoad: () => {
+      console.log('loaded');
+    },
+    getLinkToken: async () => {
+      const res = await fetch('https://my-company/link-token', {
+        method: 'POST',
+      });
+      const {linkToken} = await res.json();
+      return linkToken;
+    }
+  };
+}
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Issues/Questions
+Contact us at `support@trackstarhq.com`.
