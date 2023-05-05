@@ -1,24 +1,84 @@
-# AngularTrackstarLink
+# angular-trackstar-link
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
+### This package provides:
 
-## Code scaffolding
+An [Angular](https://angular.io/) button component that launches the [Trackstar](https://www.trackstarhq.com/) connect modal
 
-Run `ng generate component component-name --project angular-trackstar-link` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular-trackstar-link`.
-> Note: Don't forget to add `--project angular-trackstar-link` or else it will be added to the default project in your `angular.json` file. 
+### Installing:
 
-## Build
+_npm_:
 
-Run `ng build angular-trackstar-link` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm install @trackstar/angular-trackstar-link
+```
 
-## Publishing
+_yarn_:
 
-After building your library with `ng build angular-trackstar-link`, go to the dist folder `cd dist/angular-trackstar-link` and run `npm publish`.
+```bash
+yarn add @trackstar/angular-trackstar-link
+```
 
-## Running unit tests
+### Usage
 
-Run `ng test angular-trackstar-link` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The `trackstar-link` modal can be triggered using the `trackstar-connect-button` component.
 
-## Further help
+```html
+<trackstar-connect-button
+  [config]="myConfig"
+  [buttonText]="Connect your WMS"
+></trackstar-connect-button>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```jsx
+export class AppComponent {
+  someCustomerId = '12345';
+  myConfig = {
+    onSuccess: async (authCode: string) => {
+      await fetch('https://my-company/store-token', {
+        method: 'POST',
+        body: JSON.stringify({
+          customer_id: this.someCustomerId,
+          authCode: authCode
+        }),
+      });
+    },
+    onClose: () => {
+      console.log('closed');
+    },
+    onLoad: () => {
+      console.log('loaded');
+    },
+    getLinkToken: async () => {
+      const res = await fetch('https://my-company/link-token', {
+        method: 'POST',
+      });
+      const {linkToken} = await res.json();
+      return linkToken;
+    }
+  };
+}
+```
+
+Use optional `integrationAllowList` and `integrationBlockList` fields to determine the specific integrations to display. Both fields take an string array of integration names.
+To only show ShipBob and Ongoing integrations use
+```html
+integrationAllowList:{['shipbob', 'ongoing']}
+```
+To show all integrations *except* ShipBob and Ongoing use
+```html
+integrationBlockList:{['shipbob', 'ongoing']}
+```
+The `integrationAllowList` and `integrationBlockList` fields are mutually exclusive. If both fields are given values, all integrations will be displayed.
+Integration strings that can be used in these fields are:
+- extensiv-3pl-central
+- fba
+- infoplus
+- ongoing
+- shipbob
+- shiphero
+- shipstream
+- skusavvy
+- skuvault
+
+### Issues/Questions
+Contact us at `support@trackstarhq.com`.

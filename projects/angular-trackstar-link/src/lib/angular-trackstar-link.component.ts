@@ -5,6 +5,8 @@ interface ClientConfig {
   onClose?: () => void;
   onLoad?: () => void;
   getLinkToken: () => Promise<string>;
+  integrationAllowList?: string[];
+  integrationBlockList?: string[];
 }
 
 declare global {
