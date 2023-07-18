@@ -1,6 +1,6 @@
 {
   "name": "@trackstar/angular-trackstar-link",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An Angular component for Trackstar Connect Modal",
   "scripts": {
     "publish-package": "yarn build; yarn publish --access public"

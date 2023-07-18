@@ -59,26 +59,21 @@ export class AppComponent {
 }
 ```
 
-Use optional `integrationAllowList` and `integrationBlockList` fields to determine the specific integrations to display. Both fields take an string array of integration names.
+### Optional Props
+
+Use optional `integrationAllowList` and `integrationBlockList` props to determine the specific integrations to display. Both props take an string array of integration names.
 To only show ShipBob and Ongoing integrations use
-```html
-integrationAllowList:{['shipbob', 'ongoing']}
+```jsx
+integrationAllowList={['shipbob', 'ongoing']}
 ```
 To show all integrations *except* ShipBob and Ongoing use
-```html
-integrationBlockList:{['shipbob', 'ongoing']}
+```jsx
+integrationBlockList={['shipbob', 'ongoing']}
 ```
-The `integrationAllowList` and `integrationBlockList` fields are mutually exclusive. If both fields are given values, all integrations will be displayed.
-Integration strings that can be used in these fields are:
-- extensiv-3pl-central
-- fba
-- infoplus
-- ongoing
-- shipbob
-- shiphero
-- shipstream
-- skusavvy
-- skuvault
+The `integrationAllowList` and `integrationBlockList` props are mutually exclusive. If both props are given values, all integrations will be displayed.
+Integration IDs that can be used in these props can be found in the table here: https://docs.trackstarhq.com/introduction#warehouse-management-systems
+
+Set the `sandbox` prop to `true` to include a sandbox WMS in the list of integrations. This is useful for testing.
 
 ### Issues/Questions
 Contact us at `support@trackstarhq.com`.
