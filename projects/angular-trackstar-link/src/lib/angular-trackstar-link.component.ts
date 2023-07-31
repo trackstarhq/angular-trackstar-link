@@ -5,7 +5,7 @@ interface ClientConfig {
   onClose?: () => void;
   onLoad?: () => void;
   getLinkToken: () => Promise<string>;
-  buttonId?: number;
+  buttonId?: string;
 }
 
 declare global {

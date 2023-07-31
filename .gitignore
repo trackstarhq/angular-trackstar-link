@@ -10,6 +10,9 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+package-lock.json
+projects/*/node_modules
+projects/*/package-lock.json
 
 # IDEs and editors
 .idea/
