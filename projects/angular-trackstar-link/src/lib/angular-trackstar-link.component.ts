@@ -5,8 +5,7 @@ interface ClientConfig {
   onClose?: () => void;
   onLoad?: () => void;
   getLinkToken: () => Promise<string>;
-  integrationAllowList?: string[];
-  integrationBlockList?: string[];
+  buttonId?: string;
 }
 
 declare global {
@@ -30,10 +29,12 @@ export class TrackstarConnectButtonComponent implements OnInit {
 
   error: any;
   loading: boolean = true;
+  trackstarModalId: string;
 
   constructor() {}
 
   ngOnInit(): void {
+    this.trackstarModalId = this.config.hasOwnProperty("buttonId") ? "Trackstar" + this.config.buttonId : "Trackstar";
     this.loadScript('https://link.trackstarhq.com/main.js').then(() => {
       this.loading = false;
       if (window.Trackstar) {
@@ -67,16 +68,16 @@ export class TrackstarConnectButtonComponent implements OnInit {
     if (this.error) {
       throw new Error(`Error loading Trackstar script: ${this.error}`);
     }
-    if (!window.Trackstar) {
+    if (!window[this.trackstarModalId]) {
       console.error('Trackstar is not initialized');
       return;
     }
-    if (!window.Trackstar.state?.isLoaded) {
+    if (!window[this.trackstarModalId].state?.isLoaded) {
       console.error('Trackstar has not been loaded, did you call Trackstar.init()?');
       return;
     }
     // Open modal
-    window.Trackstar.open({ integrationId: undefined });
+    window[this.trackstarModalId].open({ integrationId: undefined });
   }
 
   handleClick() {
