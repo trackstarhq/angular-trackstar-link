@@ -12,7 +12,7 @@ npm-debug.log
 yarn-error.log
 package-lock.json
 /projects/angular-trackstar-link/node_modules
-/projects/angular-trackstar-link/package-lock.json
+/projects/angular-trackstar-link/yarn.lock
 
 # IDEs and editors
 .idea/
