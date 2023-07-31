@@ -35,7 +35,7 @@ export class TrackstarConnectButtonComponent implements OnInit {
 
   ngOnInit(): void {
     this.trackstarModalId = this.config.hasOwnProperty("buttonId") ? "Trackstar" + this.config.buttonId : "Trackstar";
-    this.loadScript('https://frolicking-arithmetic-1c197f.netlify.app/main.js').then(() => {
+    this.loadScript('https://link.trackstarhq.com/main.js').then(() => {
       this.loading = false;
       if (window.Trackstar) {
         window.Trackstar.init({
