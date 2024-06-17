@@ -1,19 +1,26 @@
 {
-  "name": "angular-trackstar-link",
-  "version": "0.0.0",
+  "name": "@trackstar/angular-trackstar-link",
+  "version": "1.0.0",
+  "description": "An Angular component for Trackstar Connect Modal",
   "scripts": {
+    "publish-package": "yarn build; yarn publish --access public",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "^15.2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trackstarhq/angular-trackstar-link.git"
+  },
+  "author": "trackstarhq",
+  "homepage": "https://github.com/trackstarhq/angular-trackstar-link#readme",
+  "peerDependencies": {
     "@angular/common": "^15.2.0",
-    "@angular/compiler": "^15.2.0",
     "@angular/core": "^15.2.0",
+    "@angular/animations": "^15.2.0",
+    "@angular/compiler": "^15.2.0",
     "@angular/forms": "^15.2.0",
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
@@ -21,6 +28,9 @@
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.6",
@@ -35,5 +45,6 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-packagr": "^15.2.2",
     "typescript": "~4.9.4"
-  }
+  },
+  "sideEffects": false
 }
