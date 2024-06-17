@@ -61,7 +61,12 @@ export class AppComponent {
 
 ### Optional Props
 
-Use optional `integrationAllowList` and `integrationBlockList` props to determine the specific integrations to display. Both props take an string array of integration names.
+Use optional `integrationsWithEndpoints`, `integrationAllowList` and `integrationBlockList` props to determine the specific integrations to display.
+To only show integrations that support the `get_returns` and `create_return` endpoints use
+```jsx
+integrationsWithEndpoints={['get_returns', 'create_return']}
+```
+The other two props take in a string array of integration names.
 To only show ShipBob and Ongoing integrations use
 ```jsx
 integrationAllowList={['shipbob', 'ongoing']}
@@ -75,7 +80,7 @@ Integration IDs that can be used in these props can be found in the table here: 
 
 Set the `sandbox` prop to `true` to include a sandbox WMS in the list of integrations. This is useful for testing.
 
-Use the `buttonId` prop to use multiple instances of `<TrackstarConnectButton>`. This is useful to have several buttons with different `integrationAllowList`'s to display. Each `<TrackstarConnectButton>` will need its own unique string for `buttonId`.
+Use the `buttonId` prop to use multiple instances of `<TrackstarConnectButton`. This is useful to have several buttons with different `integrationAllowList`'s to display. Each `<TrackstarConnectButton` will need its own unique string for `buttonId`.
 
 ### Issues/Questions
 Contact us at `support@trackstarhq.com`.
